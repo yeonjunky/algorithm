@@ -17,26 +17,44 @@ class LinkedList:
 
         self.len = 1
 
-    def append(self, node, index=None):
-        if index is None:
+    def push(self, new_data):
+        new_node = Node(new_data)
+
+        temp = self.head
+        self.head = new_node
+        self.head.next = temp
+
+        self.len += 1
+
+    def append(self, value, index=None):
+
+        new_node = Node(value)
+
+        if self.head.value is None:
+            self.head = new_node
+
+        elif index is None:
             last_node = self.head
 
             while last_node.next:
                 last_node = last_node.next
 
-            last_node.next = node
+            last_node.next = new_node
+            self.len += 1
 
         else:
             ith_node = self.head
+
             for _ in range(index):
-                ith_node = node.next
+                ith_node = ith_node.next
             
             temp = ith_node.next
 
-            ith_node.next = node
-            node.next = temp
+            
+            ith_node.next = new_node
+            new_node.next = temp
 
-        self.len += 1
+            self.len += 1
 
     def delete(self, index):
         node = self.head
@@ -58,14 +76,17 @@ class LinkedList:
             print('index {}'.format(i), node)
             node = node.next
 
-head = Node(1)
+head = Node(None)
 linkedlist = LinkedList(head)
 
-linkedlist.append(Node(123))
-linkedlist.append(Node(45))
-linkedlist.append(Node(46))
-linkedlist.append(Node(47))
-linkedlist.append(Node(48))
+linkedlist.append(123)
+linkedlist.append(45)
+linkedlist.append(46)
+linkedlist.append(47)
+linkedlist.append(48)
+
+linkedlist.push(100)
+linkedlist.push(23)
 
 linkedlist.delete(2)
 
