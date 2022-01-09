@@ -1,4 +1,5 @@
 arr = [4, 3, 2, 8, 5, 6, 0, 9, 1, 7]
+arr2 = [4, 3, 2, 8, 5, 6, 0, 9]
 
 def swap(arr, right, left):
     temp = arr[right]
@@ -23,7 +24,7 @@ def bubble_sort(arr):
     return arr
 
 def insertion_sort(arr):
-    
+
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
@@ -33,7 +34,38 @@ def insertion_sort(arr):
     return arr
 
 def merge_sort(arr):
-    mid = int(len(arr) / 2)
+    merge_divide(arr, 0, len(arr))
+
+def merge_divide(arr, left, right):
+    if left < right:
+        mid = int((left + right) / 2)
+        print(arr[left:mid], arr[mid:right])
+
+        merge_divide(arr, left, mid)
+        merge_divide(arr, mid+1, right)
+
+        merge(arr, left, mid, right)
+        print(arr)
+
+def merge(arr, left, mid, right):
+    sorted_list = []
+    i = left
+    j = mid
+    while i <= mid and j <= right:
+        if arr[i] < arr[j]:
+            sorted_list.append(arr[i])
+            i += 1
+        else:
+            sorted_list.append(arr[j])
+            j += 1
+
+    if i > mid and j <= right:
+        sorted_list.extend(arr[j:right])
+    else:
+        sorted_list.extend(arr[i:mid])
+
+    arr[left:right] = sorted_list
+ 
     
 
 def quick_sort(arr, start, end):
@@ -70,4 +102,4 @@ def quick_partition(arr, start, end):
 
 
 # print(quick_sort(arr, 0, len(arr)-1))
-quick_sort(arr, 0, len(arr)-1)
+merge_sort(arr2)
