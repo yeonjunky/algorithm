@@ -1,5 +1,5 @@
 import random
-import sort_algo
+from sort_algo import bubble_sort
 
 def generate_arr(length):
     arr = []
@@ -35,22 +35,43 @@ def I_linear_search(arr, val):
             break
 
     if not is_find:
-        print("didnt find value")
+        print("didn't find value")
 
 def binary_search(arr, val):
     """
-    binary search works only sorted array
+    arr: list[int]
+    val: int
+    binary search works on sorted array
     """
-    arr = sort_algo.bubble_sort(arr)
-    half_index = len(arr)
+    sorted_arr = bubble_sort(arr) # sort array before search
+    left = 0
+    right = len(sorted_arr) - 1
 
-    
-    
+    print("sorted array")
+    print(sorted_arr)
+
+    while left < right:
+        mid = int(left + (right - left) / 2)
+        print("mid:", mid, "value:", sorted_arr[mid])
+
+        if sorted_arr[mid] < val:
+            left = mid + 1
+
+        elif sorted_arr[mid] > val:
+            right = mid - 1
+
+        else:
+            print("found value at index {}".format(mid))
+            return val
+
+    print("value doesn't exist in array")
+    return -1
 
 
 
 
-arr = generate_arr(50)
-print(arr)
+
+nums = generate_arr(50)
+print(nums)
 # print(I_linear_search(arr, 5))
-I_linear_search(arr, 5)
+binary_search(nums, 56)
