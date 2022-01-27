@@ -1,17 +1,41 @@
-// #include <stdio.h>
-// #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-// int main(){
+char *modify(char *file, int index){
+    *(file+index) = '?';
+    return file;
+}
 
-//     int t;
-//     int a = 0, b = 0;
+int main(){
 
-//     scanf("%d", &t);
+    int n, i, j;
+    char **files = NULL;
 
-//     for(int i = 0; i < t; i++){
-//         scanf("%d %d", &a, &b);
-//         printf("%f\n", pow(double(a), double(b)) % 10);
-//     }
+    scanf("%d", &n);
 
-//     return 0;
-// }
+    files = malloc(n * sizeof(char*));
+
+    for(int i=0;i<n;i++){
+        files[i] = malloc(51 * sizeof(char));
+        scanf("%s", files[i]);
+    }
+
+    char *result = files[0];
+
+    if(n != 1){
+        for(int i=1;i<n;i++){
+            j = 0;
+
+            while(files[i][j] != '\0'){
+                if(result[j] != files[i][j] && result[j] != '?'){
+                    result = modify(result, j);
+                }
+                j++;
+            }
+        }
+    }
+
+    printf("%s\n", files[0]);
+
+    return 0;
+}
