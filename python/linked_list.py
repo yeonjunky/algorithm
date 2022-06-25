@@ -119,6 +119,7 @@ linkedlist.append(46)
 linkedlist.append(47)
 linkedlist.append(48)
 
+print(linkedlist.get_node(2))
 linkedlist.delete(2)
 
 linkedlist.print()
