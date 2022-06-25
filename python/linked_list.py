@@ -1,6 +1,11 @@
 import gc
 
+
 class Node:
+    """
+    value: any
+    next: Node
+    """
     def __init__(self, value) -> None:
         self.value = value
         self.next = None
@@ -9,6 +14,9 @@ class Node:
         return str(self.value)
 
 class LinkedList:
+    """
+    Include dummy head (data of first node is None)
+    """
     def __init__(self, node=None) -> None:
         if node is None:
             self.head = Node(None)
