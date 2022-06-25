@@ -19,7 +19,7 @@ class LinkedList:
         if node is None:
             self.head = Node(None)
         else:
-            self.head = node
+        self.head = node
 
         self.len = 1
 
