@@ -16,10 +16,10 @@ class LinkedList:
     else -> linked list created without dummy head
     """
     def __init__(self, node=None) -> None:
-        if node is None:
-            self.head = Node(None)
+        if node:
+            self.head = node
         else:
-        self.head = node
+            self.head = Node(None)
 
         self.len = 1
 
@@ -30,8 +30,11 @@ class LinkedList:
         new_node = Node(new_data)
 
         temp = self.head
-        self.head = new_node
-        self.head.next = temp
+
+        while temp.next:
+            temp = temp.next
+
+        temp.next = new_node
 
         self.len += 1
 
@@ -43,10 +46,7 @@ class LinkedList:
 
         new_node = Node(value)
 
-        if self.head.value is None:
-            self.head = new_node
-
-        elif index is None:
+        if index is None:
             last_node = self.head
 
             while last_node.next:
@@ -60,10 +60,10 @@ class LinkedList:
 
             for _ in range(index):
                 ith_node = ith_node.next
-            
+
             temp = ith_node.next
 
-            
+
             ith_node.next = new_node
             new_node.next = temp
 
@@ -86,19 +86,31 @@ class LinkedList:
 
         self.len -= 1
 
+    def get_node(self, index):
+        """
+        get a node of a specific index
+        """
+
+        temp = self.head
+
+        for _ in range(index):
+            temp = temp.next
+
+        return temp
+
     def print(self):
         """
         print nodes of list
         """
         node = self.head
         for i in range(self.len):
-            print('index {}'.format(i), node)
+            print(f'index {i}', node)
             node = node.next
 
     def __len__(self):
         return self.len
 
-head = Node(None)
+head = Node("head")
 linkedlist = LinkedList(head)
 
 linkedlist.append(123)
@@ -107,9 +119,7 @@ linkedlist.append(46)
 linkedlist.append(47)
 linkedlist.append(48)
 
-linkedlist.push(100)
-linkedlist.push(23)
-
 linkedlist.delete(2)
 
 linkedlist.print()
+print(len(linkedlist))
