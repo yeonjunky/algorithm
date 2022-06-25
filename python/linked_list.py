@@ -12,7 +12,8 @@ class Node:
 
 class LinkedList:
     """
-    Include dummy head (data of first node is None)
+    if node param is none -> linked list created with dummy head
+    else -> linked list created without dummy head
     """
     def __init__(self, node=None) -> None:
         if node is None:
@@ -22,7 +23,10 @@ class LinkedList:
 
         self.len = 1
 
-    def push(self, new_data):
+    def append(self, new_data):
+        """
+        add node to end of the list
+        """
         new_node = Node(new_data)
 
         temp = self.head
@@ -31,7 +35,11 @@ class LinkedList:
 
         self.len += 1
 
-    def append(self, value, index=None):
+    def insert(self, value, index=None):
+        """
+        if index is none add new node to end of the list
+        else add node to specific index
+        """
 
         new_node = Node(value)
 
@@ -62,6 +70,9 @@ class LinkedList:
             self.len += 1
 
     def delete(self, index):
+        """
+        delete a node of a specific index
+        """
         node = self.head
 
         if index == 0:
@@ -76,6 +87,9 @@ class LinkedList:
         self.len -= 1
 
     def print(self):
+        """
+        print nodes of list
+        """
         node = self.head
         for i in range(self.len):
             print('index {}'.format(i), node)
