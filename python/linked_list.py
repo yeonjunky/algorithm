@@ -95,6 +95,9 @@ class LinkedList:
             print('index {}'.format(i), node)
             node = node.next
 
+    def __len__(self):
+        return self.len
+
 head = Node(None)
 linkedlist = LinkedList(head)
 
