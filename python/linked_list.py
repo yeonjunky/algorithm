@@ -1,6 +1,3 @@
-import gc
-
-
 class Node:
     """
     value: any
