@@ -1,0 +1,1 @@
+import sys;i=sys.stdin.readline;t=int;N=t(i().rstrip());a=list(map(t,i().split()));m,s=max(a),sum(a);print(2*(s-m)+1 if 2*m-s>0 else s)
