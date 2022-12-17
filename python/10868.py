@@ -8,7 +8,6 @@ tree = [0] * (N * 4)
 def init_tree(start, end, idx):
     global nums, tree
     if start == end:
-        print(start, end, idx)
         tree[idx] = nums[start]
         return tree[idx]
 
@@ -25,11 +24,11 @@ def find_min(start, end, left, right, node):
     mid = (start + end) // 2
     return min(find_min(start, mid, left, right, node * 2), find_min(mid + 1, end, left, right, node * 2 + 1))
 
-
 for _ in range(N):
     nums.append(int(sys.stdin.readline().rstrip()))
+
 init_tree(1, N, 1)
 
 for _ in range(M):
     l, r = map(int, sys.stdin.readline().split())
-    prient(find_min(1, N, l, r, 1))
+    print(find_min(1, N, l, r, 1))
