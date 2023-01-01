@@ -6,7 +6,6 @@ N, M = map(int, sys.stdin.readline().split())
 D = [[0, 1], [1, 0], [0, -1], [-1, 0]]
 queue = deque()
 a = []
-exit = False
 year = 0
 
 
@@ -32,8 +31,7 @@ def bfs(start):
 for _ in range(N):
     a.append(list(map(int, sys.stdin.readline().split())))
 
-while not exit:
-    year += 1
+while True:
     visited = [[0] * M for _ in range(N)]
     melt = [[0] * M for _ in range(N)]
     cnt = 0
@@ -50,9 +48,11 @@ while not exit:
             a[i][j] = val if val >= 0 else 0
 
     if cnt >= 2:
-        exit = True
         print(year)
+        break
 
     if cnt == 0:
-        exit = True
         print(0)
+        break
+
+    year += 1
