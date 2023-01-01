@@ -12,7 +12,6 @@ year = 0
 
 def bfs(start):
     queue.append(start)
-    melt = [[0] * M for _ in range(N)]
 
     while queue:
         r, c = queue.popleft()
@@ -21,7 +20,7 @@ def bfs(start):
             nr, nc = r + d[0], c + d[1]
 
             if 0 <= nr < N and 0 <= nc < M:
-                if not a[nr][nc]:
+                if a[nr][nc] == 0:
                     melt[r][c] -= 1
                     continue
 
@@ -29,9 +28,6 @@ def bfs(start):
                     queue.append([nr, nc])
                     visited[nr][nc] = 1
 
-    for i in range(N):
-        for j in range(M):
-            a[i][j] += melt[i][j]
 
 for _ in range(N):
     a.append(list(map(int, sys.stdin.readline().split())))
@@ -39,6 +35,7 @@ for _ in range(N):
 while not exit:
     year += 1
     visited = [[0] * M for _ in range(N)]
+    melt = [[0] * M for _ in range(N)]
     cnt = 0
 
     for i in range(N):
@@ -47,10 +44,15 @@ while not exit:
                 bfs([i, j])
                 cnt += 1
 
-            if cnt >= 2:
-                exit = True
-                print(year)
+    for i in range(N):
+        for j in range(M):
+            val = a[i][j] + melt[i][j]
+            a[i][j] = val if val >= 0 else 0
 
-            elif cnt == 0:
-                exit = True
-                print(0)
+    if cnt >= 2:
+        exit = True
+        print(year)
+
+    if cnt == 0:
+        exit = True
+        print(0)
