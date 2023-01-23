@@ -7,7 +7,7 @@ arr = []
 for _ in range(N):
     arr.append(int(sys.stdin.readline().rstrip()))
 
-tree = [0] * (2 * 2 ** (math.ceil(math.log(N, 2))) - 1)
+tree = [0] * (2 * (2 ** math.ceil(math.log(N, 2))) - 1)
 
 def init(start, end, index):
     if start == end:
@@ -46,6 +46,7 @@ for _ in range(M + K):
 
     if a == 1:
         update(0, N - 1, 1, arr[b-1], c, b-1)
+        arr[b-1] = c
     else:
         print(query(0, N - 1, 1, b - 1, c - 1))
 
