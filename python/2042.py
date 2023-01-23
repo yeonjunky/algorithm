@@ -7,7 +7,7 @@ arr = []
 for _ in range(N):
     arr.append(int(sys.stdin.readline().rstrip()))
 
-tree = [0] * (2 * (2 ** math.ceil(math.log(N, 2))) - 1)
+tree = [0] * (N * 4)
 
 def init(start, end, index):
     if start == end:
