@@ -15,7 +15,7 @@ def get_time(build, estimated_times, dp, current_build):
     return estimated_times[current_build - 1] + time
 
 
-t = int(sys.stdin.readline().rstrip())
+t = int(input())
 
 for _ in range(t):
     build = {}
