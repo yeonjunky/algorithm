@@ -1,5 +1,4 @@
 import sys
-import math
 
 N, M, K = map(int, sys.stdin.readline().split())
 arr = []
